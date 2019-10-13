@@ -3,6 +3,7 @@
 #
 export CLASSPATH=../ABAGAIL.jar:$CLASSPATH
 mkdir -p data/plot logs image
+export TERM=xterm-color
 
 # four peaks
 echo "four peaks"
