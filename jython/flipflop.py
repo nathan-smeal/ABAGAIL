@@ -59,25 +59,25 @@ gap = GenericGeneticAlgorithmProblem(fff, odd, mf, cf)
 pop = GenericProbabilisticOptimizationProblem(fff, odd, df)
 
 
-max_iterations = 500
+max_iterations = 3500
 num_iterations = 10
 
 
 def rhc_fac():
     rhc = RandomizedHillClimbing(hcp)
-    return FixedIterationTrainer(rhc, 200)
-# rfit = FixedIterationTrainer(rhc, 200)
+    return FixedIterationTrainer(rhc, num_iterations)
+
 def sa_fac():
     sa = SimulatedAnnealing(100, .95, hcp)
-    sfit = FixedIterationTrainer(sa, 200)
+    sfit = FixedIterationTrainer(sa, num_iterations)
     return sfit
 def ga_fac():
     ga = StandardGeneticAlgorithm(20, 20, 0, gap)
-    gfit = FixedIterationTrainer(ga, 300)
+    gfit = FixedIterationTrainer(ga, num_iterations)
     return gfit
 def mimic_fac():
     mimic = MIMIC(50, 10, pop)
-    mfit = FixedIterationTrainer(mimic, 100)
+    mfit = FixedIterationTrainer(mimic, num_iterations)
     return mfit
 
 
@@ -87,6 +87,7 @@ args = {'rhc':{}, 'sa':{}, 'ga': {}, 'mimic':{} }
 
 reps = 10 # this is the checkin period for trainer
 # todo make this a func that takes in the data
+
 
 # since this is jython, can't do numpy and pandas
 with open("flipflop.csv", 'w') as out:
@@ -111,17 +112,3 @@ with open("flipflop.csv", 'w') as out:
 
         
         print "Done " + name + " trainer..."
-
-# fit.train()
-# print "RHC: " + str(fff.value(rhc.getOptimal()))
-
-
-# fit.train()
-# print "SA: " + str(fff.value(sa.getOptimal()))
-
-
-# fit.train()
-# print "GA: " + str(fff.value(ga.getOptimal()))
-
-# fit.train()
-# print "MIMIC: " + str(fff.value(mimic.getOptimal()))
