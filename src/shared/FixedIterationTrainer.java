@@ -10,7 +10,7 @@ public class FixedIterationTrainer implements Trainer {
     /**
      * The inner trainer
      */
-    private Trainer trainer;
+    public Trainer trainer;
     
     /**
      * The number of iterations to train
