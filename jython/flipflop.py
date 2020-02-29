@@ -126,7 +126,7 @@ for name,factory in trainers.items():
         # get the hyper params ready
         hypers = hargs[name] 
         keys, values = zip(*hypers.items())
-        headers = ["Alg","Set_Num","Rep_num","Fitness","Seconds"] + list(keys)
+        headers = ["Alg","Set_Num","Rep_num","Fitness","Seconds", "Func_Evals"] + list(keys)
         out.write(','.join(headers) + os.linesep)
         print "Examining " + name + " trainer..."
 
@@ -147,9 +147,10 @@ for name,factory in trainers.items():
                     fit.train()
                     stop = clock()
                     rep_times.append(stop - start)
+                    func_eval = fff.func_evals
                     fitness = fff.value(fit.trainer.getOptimal())
                     # log
-                    line = [name,r,i,fitness,rep_times[-1]] + list(exper)
+                    line = [name,r,i,fitness,rep_times[-1], func_eval] + list(exper)
                     line = [str(x) for x in line]
                     out.write(','.join(line) + os.linesep)
                 

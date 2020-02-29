@@ -10,6 +10,9 @@ import shared.Instance;
  * @version 1.0
  */
 public class FlipFlopEvaluationFunction implements EvaluationFunction {
+
+    // wish Evalfunc was abstract to make this simpler
+    public long func_evals = 0;
     /**
      * @see opt.EvaluationFunction#value(opt.OptimizationData)
      */
@@ -21,6 +24,7 @@ public class FlipFlopEvaluationFunction implements EvaluationFunction {
                 val++;
             }
         }
+        func_evals++;
         return val;
     }
 }
