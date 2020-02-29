@@ -142,6 +142,8 @@ for name,factory in trainers.items():
                     row[key] = value
                 print(row)
                 fit = factory(row)
+                # have to reset func eval per run 
+                fff.func_evals = 0
                 for i in range(0, max_iterations,num_iterations):
                     start = clock()
                     fit.train()
