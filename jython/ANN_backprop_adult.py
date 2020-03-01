@@ -11,7 +11,7 @@ import time
 import sys
 sys.path.append("../ABAGAIL.jar")
 
-from func.nn.backprop import BackPropagationNetworkFactory
+from func.nn.backprop import BackPropagationNetworkFactory,RPROPUpdateRule, BatchBackPropagationTrainer
 from shared import SumOfSquaresError, DataSet, Instance
 from opt.example import NeuralNetworkOptimizationProblem
 
@@ -36,7 +36,7 @@ TRAINING_ITERATIONS = 3500
 # for tweaking
 TRAINING_ITERATIONS = 350
 num_iterations = 10
-
+set_num = 0
 
 def initialize_instances(fn):
     """Read the X and Y CSV data into a list of instances."""
@@ -104,7 +104,7 @@ def train(oa, network, oaName, train_i,test_i, measure):
     headers = ["Alg","Set_Num","Rep_num",
         "Train_acc","Test_acc","Train_err",
         "Test_err","Seconds"] # + list(keys)
-    with open("{}-{}.csv".format(problem_name, oaName), 'w') as out:
+    with open("{}-{}-{}.csv".format(problem_name, oaName, set_num), 'w') as out:
         
         out.write(','.join(headers) + os.linesep)
         
@@ -139,17 +139,38 @@ def main():
     networks = []  # BackPropagationNetwork
     nnop = []  # NeuralNetworkOptimizationProblem
     oa = []  # OptimizationAlgorithm
-    oa_names = ["RHC", "SA", "GA"]
+    oa_names = ["RHC", "SA", "GA", "BP"]
+    print(sys.argv)
+    if len(sys.argv) > 1:
+        oa_names = [sys.argv[1]]
+        set_num = sys.argv[2]
     # results = ""
-
     for name in oa_names:
         classification_network = factory.createClassificationNetwork([INPUT_LAYER, HIDDEN_LAYER, OUTPUT_LAYER],RELU())
         networks.append(classification_network)
-        nnop.append(NeuralNetworkOptimizationProblem(data_set, classification_network, measure))
+        if name != "BP":
+            nnop.append(NeuralNetworkOptimizationProblem(data_set, classification_network, measure))
+        else:
+            print("adding backprop")
+            rule = RPROPUpdateRule()
+            nnop.append(BatchBackPropagationTrainer(data_set, classification_network, measure, rule))
 
-    oa.append(RandomizedHillClimbing(nnop[0]))
-    oa.append(SimulatedAnnealing(1E11, .95, nnop[1]))
-    oa.append(StandardGeneticAlgorithm(200, 100, 10, nnop[2]))
+
+    if "RHC" in oa_names:
+        rhc_index = oa_names.index("RHC")
+        oa.append(RandomizedHillClimbing(nnop[rhc_index]))
+    if "SA" in oa_names:
+        sa_index = oa_names.index("SA")
+        oa.append(SimulatedAnnealing(1E11, .95, nnop[sa_index]))
+    if "GA" in oa_names:
+        ga_index = oa_names.index("GA")
+        oa.append(StandardGeneticAlgorithm(100, 50, 10, nnop[ga_index]))
+    if "BP" in oa_names:
+        rule = RPROPUpdateRule()
+        bp_index = oa_names.index("BP")
+        oa.append(nnop[bp_index])
+
+
 
     for i, name in enumerate(oa_names):
         train(oa[i], networks[i], oa_names[i], train_instances, test_instances, measure)

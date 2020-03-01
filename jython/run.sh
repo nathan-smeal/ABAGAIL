@@ -31,7 +31,19 @@ echo $CLASSPATH
 # jython abalone_test.py
 
 echo "Running adult"
-jython ANN_backprop_adult.py
+jython ANN_backprop_adult.py RHC 0 &
+jython ANN_backprop_adult.py RHC 1 &
+jython ANN_backprop_adult.py RHC 2 &
+jython ANN_backprop_adult.py SA 0 &
+jython ANN_backprop_adult.py SA 1 &
+jython ANN_backprop_adult.py SA 2 &
+jython ANN_backprop_adult.py GA 0 &
+jython ANN_backprop_adult.py GA 1 &
+jython ANN_backprop_adult.py GA 2 &
+jython ANN_backprop_adult.py BP 0 &
+jython ANN_backprop_adult.py BP 1 &
+jython ANN_backprop_adult.py BP 2 &
+
 
 # # traveling salesman
 # echo "Running traveling salesman test"
