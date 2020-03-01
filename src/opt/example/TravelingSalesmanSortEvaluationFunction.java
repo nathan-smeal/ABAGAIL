@@ -12,6 +12,8 @@ import util.ABAGAILArrays;
  */
 public class TravelingSalesmanSortEvaluationFunction extends TravelingSalesmanEvaluationFunction {
 
+    public long func_evals = 0;
+
     /**
      * Make a new traveling salesman evaluation function
      * @param points the points at which the cities are located
@@ -35,6 +37,8 @@ public class TravelingSalesmanSortEvaluationFunction extends TravelingSalesmanEv
             distance += getDistance(order[i], order[i+1]);
         }
         distance += getDistance(order[order.length - 1], order[0]);
+        func_evals++;
+
         return 1/distance;
     }
 

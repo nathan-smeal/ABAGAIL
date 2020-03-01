@@ -20,21 +20,25 @@ import opt.ga.StandardGeneticAlgorithm as StandardGeneticAlgorithm
 
 from __future__ import with_statement
 
-INPUT_FILE = os.path.join("..", "src", "opt", "test", "abalone.txt")
+# INPUT_FILE = os.path.join("..", "data", "opt", "test", "adult.txt")
+trainX = os.path.join("..","data", "trainX.csv")
+trainY = os.path.join("..","data", "trainY.csv")
+testX = os.path.join("..","data", "testX.csv")
+testY = os.path.join("..","data", "testY.csv")
 
-INPUT_LAYER = 7
-HIDDEN_LAYER = 5
+INPUT_LAYER = 6
+HIDDEN_LAYER = 6
 OUTPUT_LAYER = 1
-TRAINING_ITERATIONS = 1000
+TRAINING_ITERATIONS = 3500
 
 
-def initialize_instances():
-    """Read the abalone.txt CSV data into a list of instances."""
+def initialize_instances(fn):
+    """Read the adult.txt CSV data into a list of instances."""
     instances = []
 
-    # Read in the abalone.txt CSV file
-    with open(INPUT_FILE, "r") as abalone:
-        reader = csv.reader(abalone)
+    # Read in the adult.txt CSV file
+    with open(fn, "r") as adult:
+        reader = csv.reader(adult)
 
         for row in reader:
             instance = Instance([float(value) for value in row[:-1]])
@@ -72,7 +76,7 @@ def train(oa, network, oaName, instances, measure):
 
 
 def main():
-    """Run algorithms on the abalone dataset."""
+    """Run algorithms on the adult dataset."""
     instances = initialize_instances()
     factory = BackPropagationNetworkFactory()
     measure = SumOfSquaresError()

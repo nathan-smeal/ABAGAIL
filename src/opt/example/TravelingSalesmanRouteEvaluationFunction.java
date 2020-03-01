@@ -12,6 +12,8 @@ import shared.Instance;
  */
 public class TravelingSalesmanRouteEvaluationFunction extends TravelingSalesmanEvaluationFunction {
 
+    public long func_evals = 0;
+
     /**
      * Make a new route evaluation function
      * @param points the points of the cities
@@ -29,6 +31,8 @@ public class TravelingSalesmanRouteEvaluationFunction extends TravelingSalesmanE
             distance += getDistance(d.getDiscrete(i), d.getDiscrete(i+1));
         }
         distance += getDistance(d.getDiscrete(d.size() - 1), d.getDiscrete(0));
+        func_evals++;
+
         return 1/distance;
     }
 

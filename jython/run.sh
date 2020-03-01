@@ -19,8 +19,8 @@ echo $CLASSPATH
 # jython countones.py
 
 # # continuous peaks
-echo "continuous peaks"
-jython continuouspeaks.py
+# echo "continuous peaks"
+# jython continuouspeaks.py
 
 # # knapsack
 # echo "Running knapsack"
@@ -31,8 +31,8 @@ jython continuouspeaks.py
 # jython abalone_test.py
 
 # # traveling salesman
-# echo "Running traveling salesman test"
-# jython travelingsalesman.py
+echo "Running traveling salesman test"
+jython travelingsalesman.py
 
 # New stuff
 # jython flipflop.py
