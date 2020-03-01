@@ -14,6 +14,7 @@ public class ContinuousPeaksEvaluationFunction implements EvaluationFunction {
      * The t value
      */
     private int t;
+    public long func_evals = 0;
     
     /**
      * Make a new continuous peaks function
@@ -50,6 +51,8 @@ public class ContinuousPeaksEvaluationFunction implements EvaluationFunction {
         if (max1 > t && max0 > t) {
             r = data.size();
         }
+        func_evals++;
+
         return Math.max(max1, max0) + r;
     }
 }
