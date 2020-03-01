@@ -35,7 +35,7 @@ OUTPUT_LAYER = 1
 TRAINING_ITERATIONS = 3500
 # for tweaking
 TRAINING_ITERATIONS = 350
-num_iterations = 10
+num_iterations = 1
 set_num = 0
 
 def initialize_instances(fn):
@@ -100,6 +100,13 @@ def train(oa, network, oaName, train_i,test_i, measure):
     print "\nTraining %s\n---------------------------" % (oaName,)
     rep_times = []
     reps = 1
+    set_num = 0
+    print(set_num)
+    if len(sys.argv) > 1: 
+        set_num = sys.argv[2]
+    print(set_num)
+    
+
     problem_name = "adult_nn"
     headers = ["Alg","Set_Num","Rep_num",
         "Train_acc","Test_acc","Train_err",
