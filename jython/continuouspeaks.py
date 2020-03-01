@@ -117,7 +117,7 @@ trainers = {'rhc':rhc_fac, 'sa':sa_fac, 'ga': ga_fac, 'mimic':mimic_fac }
 hargs = {'rhc':{'na':[0]}, 
     'sa':{'t': [100, 10E8,10E9,10E10,10E11], 
     'cooling' : [0.10,0.4,0.6,0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 0.99]}, 
-    'ga': {'populationSize':[10,20,100,200],
+    'ga': {'populationSize':[10,20,100,200, 1000],
     'toMate': [0.5,0.75,1.],
     'toMutate': [0,0.05,0.1]
     }, 
