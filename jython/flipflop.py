@@ -2,6 +2,7 @@ import sys
 import os
 import time
 
+sys.path.append("../ABAGAIL.jar")
 import java.io.FileReader as FileReader
 import java.io.File as File
 import java.lang.String as String
