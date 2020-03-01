@@ -128,6 +128,7 @@ def mimic_fac(args = {}):
 
 
 trainers = {'rhc':rhc_fac, 'sa':sa_fac, 'ga': ga_fac, 'mimic':mimic_fac }
+# trainers = { 'mimic':mimic_fac }
 
 
 # hargs = {'rhc':{'na':[0]}, 
