@@ -8,6 +8,7 @@ Based on AbaloneTest.java by Hannah Lau
 import os
 import csv
 import time
+sys.path.append("../ABAGAIL.jar")
 
 from func.nn.backprop import BackPropagationNetworkFactory
 from shared import SumOfSquaresError, DataSet, Instance
