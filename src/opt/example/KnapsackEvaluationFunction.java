@@ -14,6 +14,7 @@ public class KnapsackEvaluationFunction implements EvaluationFunction {
     /**
      * The values for the things that can be put in the knapsack
      */
+    public long func_evals = 0;
     private double[] values;
     
     /**
@@ -62,9 +63,12 @@ public class KnapsackEvaluationFunction implements EvaluationFunction {
             value += values[i] * entriesInKnapsack.get(i);
         }
         if (weight < maxWeight) {
+            func_evals++;
             return value;
         } else {
             double smallNumber = 1E-10;
+            func_evals++;
+
             return smallNumber*(allItemsWeight - weight);
         }
     }
