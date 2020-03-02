@@ -23,8 +23,8 @@ echo $CLASSPATH
 # jython continuouspeaks.py &
 
 # # knapsack
-echo "Running knapsack"
-jython knapsack.py &
+# echo "Running knapsack"
+# jython knapsack.py &
 
 # # abalone test
 # echo "Running abalone test"
@@ -49,7 +49,7 @@ jython knapsack.py &
 
 # # traveling salesman
 # echo "Running traveling salesman test"
-# jython travelingsalesman.py &
+jython travelingsalesman.py 
 
 # # New stuff
 # jython flipflop.py &

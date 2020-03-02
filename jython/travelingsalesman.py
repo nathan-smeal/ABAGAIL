@@ -59,7 +59,7 @@ Commandline parameter(s):
     none
 """
 
-max_iterations = 3500
+max_iterations = 10000
 num_iterations = 10
 # set N value.  This is the number of points
 N = 50
@@ -126,6 +126,8 @@ def mimic_fac(args = {}):
 
 
 trainers = {'rhc':rhc_fac, 'sa':sa_fac, 'ga': ga_fac, 'mimic':mimic_fac }
+trainers = {'rhc':rhc_fac, 'sa':sa_fac}
+
 
 
 # hargs = {'rhc':{'na':[0]}, 
